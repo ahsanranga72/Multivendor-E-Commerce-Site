@@ -126,9 +126,7 @@
                                                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                                         @csrf
                                                     </form>
-                                                    <li class="menu-item" >
-                                                        <a title="Dashboard" href="#">Seller</a>
-                                                    </li>
+
                                                 </ul>
                                             </li>
                                         @else
