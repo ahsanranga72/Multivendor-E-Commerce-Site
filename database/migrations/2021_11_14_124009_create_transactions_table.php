@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSellersTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateSellersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sellers', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('shop_name');
-            $table->string('shop_slug')->unique();
             $table->bigInteger('user_id')->unsigned();
-            $table->enum('status',['Pending','Approved']);
+            $table->bigInteger('order_id')->unsigned();
+            $table->enum('mode',['cod','bkash','nagad']);
+            $table->enum('status',['pending','approved','declined','refunded'])->default('pending');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        }); 
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        });
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateSellersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellers');
+        Schema::dropIfExists('transactions');
     }
 }

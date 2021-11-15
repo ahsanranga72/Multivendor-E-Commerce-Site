@@ -15,4 +15,8 @@ class Product extends Model
     {
         return $this->belongsTo(Catagory::class, 'category_id');
     }
+    public function shop()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id');
+    }
 }

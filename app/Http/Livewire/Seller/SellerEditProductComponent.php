@@ -26,7 +26,7 @@ class SellerEditProductComponent extends Component
     public $newimage;
     public $product_id;
     public $category_id;
-    public $seller_id;
+    public $user_id;
 
     public function mount($product_slug)
     {
@@ -100,7 +100,7 @@ class SellerEditProductComponent extends Component
             $product->image = $imageName;
         }
         $product->category_id = $this->category_id;
-        $product->seller_id = auth()->user()->id;
+        $product->user_id = auth()->user()->id;
         $product->save();
         session()->flash('message', 'Product has been updated successfullt!');
     }

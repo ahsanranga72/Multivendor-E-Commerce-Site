@@ -24,7 +24,7 @@ class SellerAddProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
-    public $seller_id;
+    public $user_id;
 
     public function mount()
     {
@@ -83,7 +83,7 @@ class SellerAddProductComponent extends Component
         $this->image->storeAs('products', $imageName);
         $product->image = $imageName;
         $product->category_id = $this->category_id;
-        $product->seller_id = auth()->user()->id;
+        $product->user_id = auth()->user()->id;
         $product->save();
         session()->flash('message', 'Product has been created successfullt!');
     }

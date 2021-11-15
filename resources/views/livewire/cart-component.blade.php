@@ -9,7 +9,7 @@
 				</ul>
 			</div>
 			<div class=" main-content-area">
-
+                @if (Cart::instance('cart')->count() > 0)
 				<div class="wrap-iten-in-cart">
                     @if(Session::has('success_message'))
                         <div class="alert alert-success">
@@ -88,7 +88,7 @@
                                 </div>
                             @endif
                         @endif
-						<a class="btn btn-checkout" href="checkout.html">Check out</a>
+						<a class="btn btn-checkout" href="#" wire:click.prevent="checkout">Check out</a>
 						<a class="link-to-shop" href="{{ route('shop')}}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
 
 					</div>
@@ -98,7 +98,13 @@
 						<a class="btn btn-update" href="#">Update Shopping Cart</a>
 					</div>
 				</div>
-
+                @else
+                    <div class="text-center" style="padding: 30px 0;">
+                        <h1>Your Cart is empty!</h1>
+                        <p>Add item to cart</p>
+                        <a href="/shop" class="btn btn-success">Shop Now</a>
+                    </div>
+                @endif
 				<div class="wrap-show-advance-info-box style-1 box-in-site">
 					<h3 class="title-box">Most Viewed Products</h3>
 					<div class="wrap-products">
