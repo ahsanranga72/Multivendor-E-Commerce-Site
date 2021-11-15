@@ -26,25 +26,23 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Stock</th>
-                                    <th>Price</th>
-                                    <th>Sale Price</th>
-                                    <th>Category</th>
-                                    <th>Date</th>
+                                    <th>Order number</th>
+                                    <th>Status</th>
+                                    <th>Item count</th>
+                                    <th>Shipping Address</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $order)
+                                @forelse ($orders as $subOrder)
                                     <tr>
-                                        <td>{{$order->id}}</td>
-                                        <td>{{$order->total}}</td>
-                                        <td>{{$order->subtotal}}</td>
+                                        <td>{{$subOrder->order_id}}</td>
+                                        <td>{{$subOrder->status}}<td>
+                                        <td>{{$subOrder->item_count}}</td>
                                     </tr>
-                                @endforeach
+                                @empty
+
+                                @endforelse
                             </tbody>
                         </table>
 

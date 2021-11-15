@@ -18,11 +18,11 @@ class CreateSellersTable extends Migration
             $table->string('username')->unique();
             $table->string('shop_name');
             $table->string('shop_slug')->unique();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned(); 
             $table->enum('status',['Pending','Approved']);
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        }); 
+        });
     }
 
     /**

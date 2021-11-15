@@ -145,6 +145,7 @@ class CheckoutComponent extends Component
             $transaction->save();
         }
         $this->thankyou = 1;
+        $order->generateSubOrders();
         Cart::instance('cart')->destroy();
         session()->forget('checkout');
 
@@ -167,6 +168,7 @@ class CheckoutComponent extends Component
     }
     public function render()
     {
+
         $this->verifyforCheckout();
         return view('livewire.checkout-component')->layout("layouts.base");
     }
