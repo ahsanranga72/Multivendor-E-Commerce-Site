@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Seller;
 
 use App\Models\Catagory;
 use App\Models\Product;
+use App\Models\Seller;
 use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -24,8 +25,8 @@ class SellerAddProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
-    public $user_id;
-
+    public $seller_id;
+    public $seller;
     public function mount()
     {
         $this->stock_status = 'instock';
@@ -83,9 +84,11 @@ class SellerAddProductComponent extends Component
         $this->image->storeAs('products', $imageName);
         $product->image = $imageName;
         $product->category_id = $this->category_id;
-        $product->user_id = auth()->user()->id;
+        $seller = Seller::where('user_id', auth()->user()->id)->first();
+        $product->seller_id = $seller->id;
         $product->save();
         session()->flash('message', 'Product has been created successfullt!');
+
     }
 
     public function render()

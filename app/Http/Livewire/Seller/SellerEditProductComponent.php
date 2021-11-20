@@ -26,7 +26,7 @@ class SellerEditProductComponent extends Component
     public $newimage;
     public $product_id;
     public $category_id;
-    public $user_id;
+    public $seller_id;
 
     public function mount($product_slug)
     {
@@ -55,7 +55,7 @@ class SellerEditProductComponent extends Component
     {
         $this->validateOnly($fields,[
             'name' => 'required',
-            'slug' => 'required|unique:products',
+            'slug' => 'required',
             's_desc' => 'required',
             'desc' => 'required',
             're_price' => 'required|numeric',
@@ -72,7 +72,7 @@ class SellerEditProductComponent extends Component
     {
         $this->validate([
             'name' => 'required',
-            'slug' => 'required|unique:products',
+            'slug' => 'required',
             's_desc' => 'required',
             'desc' => 'required',
             're_price' => 'required|numeric',
@@ -100,7 +100,7 @@ class SellerEditProductComponent extends Component
             $product->image = $imageName;
         }
         $product->category_id = $this->category_id;
-        $product->user_id = auth()->user()->id;
+        $product->seller_id = auth()->user()->id;
         $product->save();
         session()->flash('message', 'Product has been updated successfullt!');
     }

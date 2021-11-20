@@ -14,8 +14,8 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('seller_id')->unsigned()->nullable();
+            $table->bigIncrements('id');
+            $table->bigInteger('seller_id')->nullable();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('s_desc')->nullable();
@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('category_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('catagories')->onDelete('cascade');
-            $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
+
 
         });
     }

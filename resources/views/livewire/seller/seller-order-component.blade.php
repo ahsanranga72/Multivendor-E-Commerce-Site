@@ -34,15 +34,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($orders as $subOrder)
+                                @foreach ( $orders as $subOrder )
                                     <tr>
                                         <td>{{$subOrder->order_id}}</td>
                                         <td>{{$subOrder->status}}<td>
                                         <td>{{$subOrder->item_count}}</td>
                                     </tr>
-                                @empty
-
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
 

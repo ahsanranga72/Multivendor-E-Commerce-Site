@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name'=> $product_name,
             'slug'=>$slug,
-            'seller_id'=> '2',
+            'seller_id'=> '1',
             's_desc'=> $this->faker->text(200),
             'desc'=>$this->faker->text(500),
             're_price'=>$this->faker->numberBetween(100, 500),

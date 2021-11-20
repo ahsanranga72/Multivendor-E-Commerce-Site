@@ -14,14 +14,14 @@ class CreateSellersTable extends Migration
     public function up()
     {
         Schema::create('sellers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('username')->unique();
             $table->string('shop_name');
             $table->string('shop_slug')->unique();
-            $table->bigInteger('user_id')->unsigned(); 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->enum('status',['Pending','Approved']);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

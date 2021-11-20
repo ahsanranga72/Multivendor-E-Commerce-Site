@@ -50,7 +50,7 @@ class Order extends Model
 
             $suborder = $this->subOrders()->create([
                 'order_id'=> $this->id,
-                'seller_id'=> $seller->user_id ?? 1,
+                'seller_id'=> $seller->id ?? 1,
                 'grand_total'=> $products->sum('pivot.price'),
                 'item_count'=> $products->count()
             ]);

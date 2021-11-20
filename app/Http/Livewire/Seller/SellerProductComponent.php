@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Seller;
 
 use App\Models\Product;
+use App\Models\Seller;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class SellerProductComponent extends Component
 {
+    public $seller;
     use WithPagination;
     public function deleteproduct($id)
     {
@@ -17,7 +19,8 @@ class SellerProductComponent extends Component
     }
     public function render()
     {
-        $products = Product::where(['seller_id'=>auth()->user()->id])->paginate(10);
+        $seller = Seller::where('user_id', auth()->user()->id)->first();
+        $products = Product::where(['seller_id'=>$seller->id])->paginate(10);
         return view('livewire.seller.seller-product-component', ['products'=>$products])->layout('layouts.base');
     }
 }
