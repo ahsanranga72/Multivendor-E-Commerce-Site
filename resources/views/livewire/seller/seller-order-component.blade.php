@@ -27,9 +27,10 @@
                             <thead>
                                 <tr>
                                     <th>Order number</th>
-                                    <th>Status</th>
                                     <th>Item count</th>
+                                    <th>Grand Total</th>
                                     <th>Shipping Address</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -37,8 +38,14 @@
                                 @foreach ( $orders as $subOrder )
                                     <tr>
                                         <td>{{$subOrder->order_id}}</td>
-                                        <td>{{$subOrder->status}}<td>
                                         <td>{{$subOrder->item_count}}</td>
+                                        <td>{{$subOrder->grand_total}}</td>
+                                        <td> {{$subOrder->order->line1}}</td>
+                                        <td>{{$subOrder->status}}<td>
+                                            @if($subOrder->status != 'completed')
+                                                <a href=" {{route('order.delivered', $subOrder)}} " class="btn btn-primary btn-sm">mark as delivered</button>
+                                            @endif
+                                        <td></td>
                                     </tr>
                                 @endforeach
                             </tbody>

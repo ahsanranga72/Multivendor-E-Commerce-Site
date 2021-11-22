@@ -88,7 +88,6 @@ class SellerAddProductComponent extends Component
         $product->seller_id = $seller->id;
         $product->save();
         session()->flash('message', 'Product has been created successfullt!');
-
     }
 
     public function render()

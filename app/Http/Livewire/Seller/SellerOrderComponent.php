@@ -12,8 +12,24 @@ class SellerOrderComponent extends Component
 {
     public $seller;
     use WithPagination;
-    public function render()
+
+    public function markDelivered(SubOrder $suborder)
     {
+        $suborder->status = 'completed';
+        $suborder->save();
+
+        //check if all suborders complete
+        $pendingSubOrders = $suborder->order->subOrders()->where('status','!=', 'completed')->count();
+
+        if($pendingSubOrders == 0) {
+            $suborder->order()->update(['status'=>'completed']);
+        }
+
+        return redirect('/seller/orders')->withMessage('Order marked complete');
+    }
+
+    public function render()
+    { 
         $seller = Seller::where('user_id', auth()->user()->id)->first();
         $orders = SubOrder::where(['seller_id'=> $seller->id])->paginate(10);
 
