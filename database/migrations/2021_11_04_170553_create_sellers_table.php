@@ -20,7 +20,7 @@ class CreateSellersTable extends Migration
             $table->string('shop_slug')->unique();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->enum('status',['Pending','Approved']);
+            $table->enum('status',['Pending','Approved']); 
             $table->timestamps();
         });
     }

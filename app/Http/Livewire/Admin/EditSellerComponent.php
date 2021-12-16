@@ -43,11 +43,12 @@ class EditSellerComponent extends Component
         $seller->shop_name = $this->shop_name;
         $seller->shop_slug = $this->shop_slug;
         $seller->user_id = $this->user_id;
+        $seller->status = $this->status;
         $user = User::find($this->user_id);
         $user->utype = $this->utype;
         $user->save();
         $seller->save();
-        session()->flash('message', 'Category has been Update!');
+        session()->flash('message', 'Seller has been Update!');
 
         // return redirect()->route('admin.categories');
      }

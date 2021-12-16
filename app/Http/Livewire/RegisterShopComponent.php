@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Seller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -41,8 +42,8 @@ class RegisterShopComponent extends Component
         $shop->username = $this->username;
         $shop->shop_name = $this->shop_name;
         $shop->shop_slug = $this->shop_slug;
-        $shop->user_id = auth()->user()->id;
-        $shop->save();
+        $shop->user_id = Auth::user()->id;
+        $shop->save(); 
 
         session()->flash('message', 'Shop has been created successfully');
     }

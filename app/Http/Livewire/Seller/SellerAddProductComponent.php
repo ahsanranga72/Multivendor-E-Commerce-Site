@@ -77,7 +77,7 @@ class SellerAddProductComponent extends Component
         $product->re_price = $this->re_price;
         $product->sa_price = $this->sa_price;
         $product->SKU = $this->SKU;
-        $product->stock_status = $this->stock_status;
+        $product->stock_status = $this->stock_status; 
         $product->featured = $this->featured;
         $product->quantity = $this->quantity;
         $imageName = Carbon::now()->timestamp. '.' .$this->image->extension();
